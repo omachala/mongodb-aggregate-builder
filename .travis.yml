@@ -1,0 +1,20 @@
+language: php
+
+php:
+    - 7
+
+notifications:
+    email: false
+
+sudo: false
+
+before_script:
+    - 'echo "extension=mongodb.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini'
+    - 'curl -s http://getcomposer.org/installer | php'
+    - 'php composer.phar install'
+
+script:
+    - 'vendor/bin/phpunit -v'
+
+after_success:
+    - 'travis_retry php vendor/bin/php-coveralls -v'

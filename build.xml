@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="omachala-mongodb-aggregate-builder" default="build" basedir=".">
+
+    <target name="clean" description="Clean up">
+        <delete dir="${basedir}/build"/>
+        <mkdir dir="${basedir}/build"/>
+        <mkdir dir="${basedir}/build/coverage"/>
+        <mkdir dir="${basedir}/build/logs"/>
+    </target>
+
+
+    <target name="phpunit" description="Run unit tests">
+        <exec dir="${basedir}" executable="${basedir}/vendor/bin/phpunit" />
+    </target>
+
+    <target name="coverage" depends="clean">
+        <exec dir="${basedir}" executable="${basedir}/vendor/bin/phpunit">
+            <arg value="--coverage-html=${basedir}/build/coverage"/>
+        </exec>
+    </target>
+
+    <target name="coverage-index-check">
+        <available file="${basedir}/build/coverage/index.html" property="coverage-index.present"/>
+    </target>
+
+    <target name="view-coverage" if="coverage-index.present" depends="coverage-index-check,coverage">
+        <exec dir="${basedir}" executable="open ${basedir}/build/coverage/index.html" />
+    </target>
+
+    <target name="build" depends="clean,phpunit,coverage,view-coverage"/>
+</project>

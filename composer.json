@@ -1,0 +1,26 @@
+{
+  "name": "omachala/mongodb-aggregate-builder",
+  "license": "MIT",
+  "version": "0.0.0",
+  "authors": [
+    {
+      "name": "Ondra Machala",
+      "email": "o.machala@email.cz"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": "^7.0",
+    "ext-mongodb": "^1.4",
+    "mongodb/mongodb": "^1.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.5",
+    "php-coveralls/php-coveralls": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "AggregateBuilder\\": "src/"
+    }
+  }
+}
